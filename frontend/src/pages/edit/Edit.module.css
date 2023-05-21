@@ -1,0 +1,108 @@
+.form {
+  width: 600px;
+  min-height: 600px;
+  border: 1px solid #cfc9c9;
+  border-radius: 10px;
+  margin: 150px auto;
+}
+.form h3 {
+  color: blue;
+  font-family: monospace;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: normal;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+.form h2 {
+  color: black;
+  font-size: 23px;
+  font-family: fantasy;
+  text-transform: uppercase;
+  font-weight: normal;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+.form p {
+  color: black;
+  font-size: 17px;
+  font-family: sans-serif;
+  font-weight: normal;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+.form h4 {
+  color: black;
+  font-size: 19px;
+  font-family: cursive;
+  font-weight: normal;
+  margin-top: 40px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+.form img {
+  width: calc(100% - 40px);
+  height: 300px;
+  border-radius: 10px;
+  margin: 20px 20px;
+}
+.form input, .form select, .form textarea {
+  width: calc(100% - 50px);
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid black;
+  font-size: 16px;
+  padding-left: 10px;
+  outline: none;
+  margin: 10px 20px;
+}
+.form textarea {
+  width: calc(100% - 60px);
+  min-height: 60px;
+  padding: 10px;
+  outline: none;
+  resize: vertical;
+}
+.form select {
+  width: calc(100% - 40px);
+}
+.buttons-container {
+  width: calc(100% - 40px);
+  height: 45px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 30px 0px 20px 20px;
+}
+.submit-btn, .edit-btn, .delete-btn {
+  width: calc(100% - 40px);
+  height: 45px;
+  border-radius: 5px;
+  border: none;
+  background-color: #3b3b3b;
+  font-size: 16px;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  transition: 0.5s;
+  margin: 30px 0px 20px 20px;
+}
+.delete-btn {
+  width: 170px;
+  background-color: #c13e3e;
+}
+.delete-btn:hover {
+  background-color: #e24747;
+}
+.edit-btn {
+  width: 80px;
+  background-color: #0a430ac7;
+}
+.edit-btn:hover {
+  background-color: #0b5e0bc7;
+}
+.error-message {
+  font-size: 17px;
+  color: red;
+  margin-left: 20px;
+}
