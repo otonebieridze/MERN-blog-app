@@ -22,6 +22,7 @@
   font-weight: normal;
   margin-top: 15px;
   margin-left: 20px;
+  margin-right: 20px;
 }
 .form p {
   color: black;
@@ -30,15 +31,14 @@
   font-weight: normal;
   margin-top: 15px;
   margin-left: 20px;
+  margin-right: 20px;
 }
 .form h4 {
   color: black;
   font-size: 19px;
   font-family: cursive;
   font-weight: normal;
-  margin-top: 40px;
-  margin-left: 20px;
-  margin-bottom: 30px;
+  margin: 40px 20px 30px 20px;
 }
 .form img {
   width: calc(100% - 40px);
@@ -124,4 +124,67 @@
   font-size: 17px;
   color: red;
   margin-left: 20px;
+}
+
+
+/* MEDIA */
+@media (max-width: 630px) {
+  .form {
+    width: 90%;
+  }
+}
+@media (max-width: 350px) {
+  .form img {
+    height: 200px;
+    border-radius: 5px;
+  }
+  .form .text-input, .form select, .form textarea {
+    height: 33px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .image-upload-button {
+    width: calc(100% - 40px);
+    height: 32px;
+    font-size: 13px;
+  }
+  .submit-btn {
+    width: calc(100% - 40px);
+    height: 35px;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+  .error-message {
+    font-size: 14px;
+  }
+
+  .form h3 {
+    font-size: 19px;
+    margin-top: 0px;
+  }
+  .form h2 {
+    font-size: 20px;
+  }
+  .form p {
+    font-size: 15px;
+  }
+  .form h4 {
+    font-size: 17px;
+  }
+  .buttons-container {
+    height: 35px;
+    justify-content: flex-start;
+    margin: 30px 0px 20px 0px;
+  }
+  .edit-btn, .delete-btn {
+    height: 35px;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+  .delete-btn {
+    width: 130px;
+  }
+  .edit-btn {
+    width: 60px;
+  }
 }

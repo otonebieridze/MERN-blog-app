@@ -17,7 +17,7 @@ function Create() {
 
   // Add a new blog
   const onSubmit = (data) => {
-    data.image = blogImage;
+    data.image = "blogImage";
     axios.post("http://localhost:4000/api/blogs", data);
     navigate("/");
   };
@@ -113,9 +113,12 @@ function Create() {
         <option disabled value="">
           Select Category
         </option>
-        <option value="movie">Movie</option>
+        <option value="business">Business/corporate</option>
+        <option value="travel">Travel</option>
+        <option value="lifestyle">Lifestyle</option>
+        <option value="food">Food</option>
         <option value="sport">Sport</option>
-        <option value="music">Music</option>
+        <option value="other">Other</option>
       </select>
       {errors.category && (
         <p role="alert" className={styles["error-message"]}>

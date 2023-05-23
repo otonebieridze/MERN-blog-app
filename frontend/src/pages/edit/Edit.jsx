@@ -105,12 +105,15 @@ function Edit({ blogsData }) {
           <option disabled value="">
             Select Category
           </option>
-          <option value="movie">Movie</option>
+          <option value="business">Business/corporate</option>
+          <option value="travel">Travel</option>
+          <option value="lifestyle">Lifestyle</option>
+          <option value="food">Food</option>
           <option value="sport">Sport</option>
-          <option value="music">Music</option>
+          <option value="other">Other</option>
         </select>
       ) : (
-        <h3>{blog?.category}</h3>
+        <h3>#{blog?.category}</h3>
       )}
       {errors.category && (
         <span role="alert" className={styles["error-message"]}>
@@ -157,7 +160,7 @@ function Edit({ blogsData }) {
           className={styles["text-input"]}
         />
       ) : (
-        <h4>{blog?.author}</h4>
+        <h4>Author: {blog?.author}</h4>
       )}
       {errors.author && (
         <span role="alert" className={styles["error-message"]}>
