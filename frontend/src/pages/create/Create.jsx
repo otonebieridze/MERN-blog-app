@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import styles from "./Create.module.css";
-import IMG from "../../assets/img.jpg";
+import emptyImg from "../../assets/empty-img.jpg";
 import axios from "axios";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Create() {
   const {
@@ -11,25 +12,48 @@ function Create() {
     formState: { errors },
     handleSubmit,
   } = useForm();
-
+  const [blogImage, setBlogImage] = useState("");
   const navigate = useNavigate();
 
+  // Add a new blog
   const onSubmit = (data) => {
-    // imageeeeeeeeeee
-    data.image = "image";
-    
+    data.image = blogImage;
     axios.post("http://localhost:4000/api/blogs", data);
-    navigate('/');
+    navigate("/");
+  };
+
+  // upload or change image
+  function handleImageUpload(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      setBlogImage(reader.result);
+    };
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <img src={IMG} alt="blog-image" />
+      {blogImage !== "" ? (
+        <img src={blogImage} alt="blog-image" />
+      ) : (
+        <img src={emptyImg} alt="empty-image" />
+      )}
+      <input
+        type="file"
+        accept="image/*"
+        {...register("image")}
+        aria-invalid={errors.image ? "true" : "false"}
+        className={styles["image-upload-inp"]}
+        onChange={(e) => handleImageUpload(e)}
+      />
 
       <input
         {...register("title", { required: "This field is required!" })}
         aria-invalid={errors.title ? "true" : "false"}
         placeholder="Title"
+        className={styles["text-input"]}
       />
       {errors.title && (
         <p role="alert" className={styles["error-message"]}>
@@ -41,6 +65,7 @@ function Create() {
         {...register("author", { required: "This field is required!" })}
         aria-invalid={errors.author ? "true" : "false"}
         placeholder="Author"
+        className={styles["text-input"]}
       />
       {errors.author && (
         <p role="alert" className={styles["error-message"]}>

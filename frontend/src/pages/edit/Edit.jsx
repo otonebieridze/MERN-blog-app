@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import styles from "./Edit.module.css";
-import IMG from "../../assets/img.jpg";
 import axios from "axios";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+
+import emptyImage from "../../assets/empty-img.jpg";
 
 function Edit({ blogsData }) {
   const { id } = useParams();
@@ -16,17 +17,16 @@ function Edit({ blogsData }) {
     formState: { errors },
     handleSubmit,
   } = useForm({
-    defaultValues: {...blog}
+    defaultValues: { ...blog },
   });
 
+  const [blogImage, setBlogImage] = useState("");
   const [isformEdited, setIsFormEdited] = useState(false);
   const navigate = useNavigate();
 
   // Update a blog
   const onSubmit = (data) => {
-    // imageeeeeeeeeee
-    data.image = "image";
-
+    data.image = blogImage;
     axios.patch(`http://localhost:4000/api/blogs/${id}`, data);
     navigate("/");
   };
@@ -37,9 +37,46 @@ function Edit({ blogsData }) {
     navigate("/");
   }
 
+  // upload or change image
+  function handleImageUpload(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      setBlogImage(reader.result);
+    };
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <img src={IMG} alt="blog-image" />
+      <img
+        src={
+          blogImage === ""
+            ? blog?.image === ""
+              ? emptyImage
+              : blog?.image
+            : blogImage
+        }
+        alt="blog-image"
+      />
+
+      {isformEdited && (
+        <input
+          type="file"
+          accept="image/*"
+          {...register("image")}
+          aria-invalid={errors.image ? "true" : "false"}
+          className={styles["image-upload-inp"]}
+          onChange={(e) => handleImageUpload(e)}
+        />
+      )}
+      <br />
+      {isformEdited && errors.image && (
+        <span role="alert" className={styles["error-message"]}>
+          {errors.image?.message}
+        </span>
+      )}
 
       {isformEdited ? (
         <select
@@ -68,6 +105,7 @@ function Edit({ blogsData }) {
           {...register("title", { required: "This field is required!" })}
           aria-invalid={errors.title ? "true" : "false"}
           placeholder="Title"
+          className={styles["text-input"]}
         />
       ) : (
         <h2>{blog?.title}</h2>
@@ -98,6 +136,7 @@ function Edit({ blogsData }) {
           {...register("author", { required: "This field is required!" })}
           aria-invalid={errors.author ? "true" : "false"}
           placeholder="Author"
+          className={styles["text-input"]}
         />
       ) : (
         <h4>{blog?.author}</h4>

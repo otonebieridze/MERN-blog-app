@@ -1,7 +1,6 @@
 import styles from "./Blogs.module.css";
 import { Link } from "react-router-dom";
-
-import IMG from "../../assets/img.jpg";
+import emptyImage from "../../assets/empty-img.jpg";
 
 function Blogs({ blogsData }) {
   return (
@@ -14,7 +13,7 @@ function Blogs({ blogsData }) {
           key={item._id}
         >
           <div style={{ flexGrow: 1 }}>
-            <img src={IMG} alt="img" />
+            <img src={item.image === "" ? emptyImage : item.image} alt="img" />
             <h3>#{item.category}</h3>
             <h2>{item.title}</h2>
             <p>{item.description}</p>
