@@ -26,7 +26,7 @@ function Edit({ blogsData }) {
 
   // Update a blog
   const onSubmit = (data) => {
-    data.image = blogImage;
+    blogImage !== "" ? (data.image = blogImage) : null;
     axios.patch(`http://localhost:4000/api/blogs/${id}`, data);
     navigate("/");
   };
@@ -62,14 +62,32 @@ function Edit({ blogsData }) {
       />
 
       {isformEdited && (
-        <input
-          type="file"
-          accept="image/*"
-          {...register("image")}
-          aria-invalid={errors.image ? "true" : "false"}
-          className={styles["image-upload-inp"]}
-          onChange={(e) => handleImageUpload(e)}
-        />
+        <div style={{
+          width: "100%",
+          height: "40px",
+          display: "flex",
+          justifyContent: "center"
+        }}>
+          <input
+            type="file"
+            accept="image/*"
+            id="fileinput"
+            {...register("image")}
+            aria-invalid={errors.image ? "true" : "false"}
+            className={styles["image-upload-inp"]}
+            onChange={(e) => handleImageUpload(e)}
+          />
+
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("fileinput").click();
+            }}
+            className={styles["image-upload-button"]}
+          >
+            Upload Image
+          </button>
+        </div>
       )}
       <br />
       {isformEdited && errors.image && (

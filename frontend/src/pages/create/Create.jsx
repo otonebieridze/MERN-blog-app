@@ -40,14 +40,35 @@ function Create() {
       ) : (
         <img src={emptyImg} alt="empty-image" />
       )}
-      <input
-        type="file"
-        accept="image/*"
-        {...register("image")}
-        aria-invalid={errors.image ? "true" : "false"}
-        className={styles["image-upload-inp"]}
-        onChange={(e) => handleImageUpload(e)}
-      />
+      <div
+        style={{
+          width: "100%",
+          height: "40px",
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "20px"
+        }}
+      >
+        <input
+          type="file"
+          accept="image/*"
+          id="fileinput"
+          {...register("image")}
+          aria-invalid={errors.image ? "true" : "false"}
+          className={styles["image-upload-inp"]}
+          onChange={(e) => handleImageUpload(e)}
+        />
+
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById("fileinput").click();
+          }}
+          className={styles["image-upload-button"]}
+        >
+          Upload Image
+        </button>
+      </div>
 
       <input
         {...register("title", { required: "This field is required!" })}
