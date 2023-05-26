@@ -12,19 +12,37 @@ function Create() {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [blogImage, setBlogImage] = useState("");
+  const [blogImage, setBlogImage] = useState(null);
+  const [blogImage2, setBlogImage2] = useState(null);
+
   const navigate = useNavigate();
 
   // Add a new blog
-  const onSubmit = (data) => {
-    data.image = "blogImage";
-    axios.post("http://localhost:4000/api/blogs", data);
-    navigate("/");
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("author", data.author);
+    formData.append("description", data.description);
+    formData.append("category", data.category);
+    formData.append("image", blogImage2); 
+  
+    try {
+      await axios.post("http://localhost:4000/api/blogs", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });      
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
-
+  
   // upload or change image
   function handleImageUpload(e) {
     const file = e.target.files[0];
+    setBlogImage2(file)
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
@@ -35,7 +53,7 @@ function Create() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      {blogImage !== "" ? (
+      {blogImage !== null ? (
         <img src={blogImage} alt="blog-image" />
       ) : (
         <img src={emptyImg} alt="empty-image" />
@@ -53,8 +71,6 @@ function Create() {
           type="file"
           accept="image/*"
           id="fileinput"
-          {...register("image")}
-          aria-invalid={errors.image ? "true" : "false"}
           className={styles["image-upload-inp"]}
           onChange={(e) => handleImageUpload(e)}
         />

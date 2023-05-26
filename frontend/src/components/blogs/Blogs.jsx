@@ -13,7 +13,10 @@ function Blogs({ blogsData }) {
           key={item._id}
         >
           <div style={{ flexGrow: 1 }}>
-            <img src={item.image === "" ? emptyImage : item.image} alt="img" />
+            <img
+              src={item.image ? `http://localhost:4000/${item.filePath}` : emptyImage}
+              alt="img"
+            />
             <h3>#{item.category}</h3>
             <h2>{item.title}</h2>
             <p>{item.description}</p>

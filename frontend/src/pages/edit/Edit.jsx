@@ -21,13 +21,20 @@ function Edit({ blogsData }) {
   });
 
   const [blogImage, setBlogImage] = useState("");
+  const [blogImage2, setBlogImage2] = useState(null);
   const [isformEdited, setIsFormEdited] = useState(false);
   const navigate = useNavigate();
 
   // Update a blog
   const onSubmit = (data) => {
-    blogImage !== "" ? (data.image = blogImage) : null;
-    axios.patch(`http://localhost:4000/api/blogs/${id}`, data);
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("author", data.author);
+    formData.append("description", data.description);
+    formData.append("category", data.category);
+    blogImage2 !== null && formData.append("image", blogImage2); 
+
+    axios.patch(`http://localhost:4000/api/blogs/${id}`, formData);
     navigate("/");
   };
 
@@ -40,6 +47,8 @@ function Edit({ blogsData }) {
   // upload or change image
   function handleImageUpload(e) {
     const file = e.target.files[0];
+    setBlogImage2(file);
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
@@ -53,9 +62,9 @@ function Edit({ blogsData }) {
       <img
         src={
           blogImage === ""
-            ? blog?.image === ""
+            ? blog.image === "" || !blog.image
               ? emptyImage
-              : blog?.image
+              : `http://localhost:4000/${blog.filePath}`
             : blogImage
         }
         alt="blog-image"

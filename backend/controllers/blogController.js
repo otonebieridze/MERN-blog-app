@@ -3,10 +3,10 @@ const mongoose = require("mongoose");
 
 // GET all blogs
 const getAllBlogs = async (req, res) => {
-  const blogs = await Blog.find({}).sort({createdAt: -1});
+  const blogs = await Blog.find({}).sort({ createdAt: -1 });
 
   res.status(200).json(blogs);
-}
+};
 
 // GET a single blog
 const getSingleBlog = async (req, res) => {
@@ -22,19 +22,40 @@ const getSingleBlog = async (req, res) => {
     return res.status(404).json({ message: "Blog not found" });
   }
   res.status(200).json(blog);
-}
+};
 
 // CREATE a new blog
-const createBlog = async (req, res) => {
-  const { title, author, description, image, category } = req.body;
+const createBlog = (req, res) => {
+  const { title, author, description, category } = req.body;
+  let newBlog = [];
 
-  try {
-    const blog = await Blog.create({ title, author, description, image, category });
-    res.status(200).json(blog);
-  } catch (error) {
-    res.status(400).json({error: error.message});
+  if (req.file) {
+    const { filename, path: filePath } = req.file;
+    newBlog = new Blog({
+      title,
+      author,
+      description,
+      category,
+      image: filename,
+      filePath,
+    });
+  } else {
+    newBlog = new Blog({
+      title,
+      author,
+      description,
+      category,
+    });
   }
-}
+  newBlog
+    .save()
+    .then(() => {
+      res.json({ message: "Blog added successfully" });
+    })
+    .catch((error) => {
+      res.status(500).json({ error: error });
+    });
+};
 
 // DELETE a blog
 const deleteBlog = async (req, res) => {
@@ -44,16 +65,16 @@ const deleteBlog = async (req, res) => {
     return res.status(400).json({ message: "Invalid id" });
   }
 
-  const blog = await Blog.findOneAndDelete({_id: id});
+  const blog = await Blog.findOneAndDelete({ _id: id });
 
   if (!blog) {
     return res.status(404).json({ message: "Invalid id" });
   }
 
   res.status(200).json(blog);
-}
+};
 
-// UPDATE a blog
+//UPDATE a blog
 const updateBlog = async (req, res) => {
   const { id } = req.params;
 
@@ -61,22 +82,38 @@ const updateBlog = async (req, res) => {
     return res.status(400).json({ message: "Invalid id" });
   }
 
-  const blog = await Blog.findOneAndUpdate({_id: id}, {
-    ...req.body
-  }, {new: true});
+  const { ...otherData } = req.body;
+  let updatedData = {};
 
-  if (!blog) {
-    return res.status(404).json({ message: "Invalid id" });
+  if (req.file) {
+    updatedData = {
+      image: req.file.filename,
+      filePath: req.file.path,
+      ...otherData,
+    };
+  } else {
+    updatedData = {
+      ...otherData,
+    };
   }
 
-  res.status(200).json(blog);
-}
+  try {
+    const blog = await Blog.findOneAndUpdate({ _id: id }, updatedData, { new: true }).exec();
 
+    if (!blog) {
+      return res.status(404).json({ message: "Invalid id" });
+    }
+
+    res.status(200).json(blog);
+  } catch (error) {
+    res.status(500).json({ message: "An error occurred" });
+  }
+};
 
 module.exports = {
   getAllBlogs,
   getSingleBlog,
   createBlog,
   deleteBlog,
-  updateBlog
-}
+  updateBlog,
+};

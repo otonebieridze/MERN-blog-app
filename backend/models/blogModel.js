@@ -18,6 +18,9 @@ const blogSchema = new Schema({
   image: {
     type: String
   },
+  filePath: {
+    type: String
+  },
   category: {
     type: String,
     required: true
