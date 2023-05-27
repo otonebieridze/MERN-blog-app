@@ -11,7 +11,7 @@ function App() {
   const [blogsData, setBlogsData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/blogs")
+      .get("https://mern-blog-app-server-production.up.railway.app/api/blogs")
       .then((res) => setBlogsData(res.data))
       .catch((error) => console.log(error));
   }, [blogsData]);

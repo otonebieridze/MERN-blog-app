@@ -14,7 +14,7 @@ function Blogs({ blogsData }) {
         >
           <div style={{ flexGrow: 1 }}>
             <img
-              src={item.image ? `http://localhost:4000/${item.filePath}` : emptyImage}
+              src={item.image ? `https://mern-blog-app-server-production.up.railway.app/${item.filePath}` : emptyImage}
               alt="img"
             />
             <h3>#{item.category}</h3>

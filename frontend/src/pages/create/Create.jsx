@@ -27,7 +27,7 @@ function Create() {
     formData.append("image", blogImage2); 
   
     try {
-      await axios.post("http://localhost:4000/api/blogs", formData, {
+      await axios.post("https://mern-blog-app-server-production.up.railway.app/api/blogs", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

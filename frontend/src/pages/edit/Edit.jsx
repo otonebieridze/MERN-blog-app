@@ -34,13 +34,13 @@ function Edit({ blogsData }) {
     formData.append("category", data.category);
     blogImage2 !== null && formData.append("image", blogImage2); 
 
-    axios.patch(`http://localhost:4000/api/blogs/${id}`, formData);
+    axios.patch(`https://mern-blog-app-server-production.up.railway.app/api/blogs/${id}`, formData);
     navigate("/");
   };
 
   // Delete a blog
   function handleDelete() {
-    axios.delete(`http://localhost:4000/api/blogs/${id}`);
+    axios.delete(`https://mern-blog-app-server-production.up.railway.app/api/blogs/${id}`);
     navigate("/");
   }
 
@@ -64,7 +64,7 @@ function Edit({ blogsData }) {
           blogImage === ""
             ? blog.image === "" || !blog.image
               ? emptyImage
-              : `http://localhost:4000/${blog.filePath}`
+              : `https://mern-blog-app-server-production.up.railway.app/${blog.filePath}`
             : blogImage
         }
         alt="blog-image"
