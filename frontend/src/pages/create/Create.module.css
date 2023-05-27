@@ -42,7 +42,7 @@
 }
 .form textarea {
   width: calc(100% - 60px);
-  min-height: 60px;
+  min-height: 100px;
   padding: 10px;
   outline: none;
   resize: vertical;

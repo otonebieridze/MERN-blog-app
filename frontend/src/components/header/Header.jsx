@@ -10,12 +10,24 @@ function Header() {
         </h1>
       </Link>
       <ul>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <li>ALL BLOGS</li>
-        </Link>
-        <Link to="/create" style={{ textDecoration: "none" }}>
-          <li>CREATE BLOG</li>
-        </Link>
+        <li>
+          <Link
+            className={styles.link}
+            to="/"
+            style={{ textDecoration: "none" }}
+          >
+            ALL BLOGS
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={styles.link}
+            to="/create"
+            style={{ textDecoration: "none" }}
+          >
+            CREATE BLOG
+          </Link>
+        </li>
       </ul>
     </header>
   );

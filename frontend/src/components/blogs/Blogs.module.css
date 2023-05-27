@@ -36,6 +36,7 @@
   font-weight: normal;
   margin-top: 15px;
   margin-left: 20px;
+  margin-right: 20px;
 }
 .blog-item h2 {
   color: black;
@@ -45,6 +46,7 @@
   font-weight: normal;
   margin-top: 15px;
   margin-left: 20px;
+  margin-right: 20px;
 }
 .blog-item p {
   color: black;
@@ -62,6 +64,7 @@
   font-weight: normal;
   margin-top: 40px;
   margin-left: 20px;
+  margin-right: 20px;
   margin-bottom: 30px;
 }
 

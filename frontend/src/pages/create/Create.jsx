@@ -82,7 +82,7 @@ function Create() {
           }}
           className={styles["image-upload-button"]}
         >
-          Upload Image
+          {blogImage !== null ? "Change " : "Upload "}Image
         </button>
       </div>
 

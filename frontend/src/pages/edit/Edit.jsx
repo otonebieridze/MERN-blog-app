@@ -94,7 +94,7 @@ function Edit({ blogsData }) {
             }}
             className={styles["image-upload-button"]}
           >
-            Upload Image
+            {blog.image === "" || !blog.image ? "Upload " : "Change "}Image
           </button>
         </div>
       )}

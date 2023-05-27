@@ -22,17 +22,19 @@
   margin-right: 50px;
 }
 .header ul li {
+  list-style: none;
+}
+.header .link {
   color: black;
   font-size: 22px;
   font-family: sans-serif;
-  list-style: none;
   cursor: pointer;
   transition: 0.5s;
 }
-.header ul li:hover {
+.header .link:hover {
   color: gray;
 }
-.header ul li:last-child {
+.header .link:last-child {
   margin-left: 30px;
 }
 
@@ -42,7 +44,7 @@
   .header {
     height: 70px;
   }
-  .header ul li {
+  .header .link {
     font-size: 18px;
   }
   .header h1 {
@@ -50,7 +52,7 @@
   }
 }
 @media (max-width: 600px) {
-  .header ul li {
+  .header .link {
     font-size: 14px;
   }
   .header h1 {
@@ -71,14 +73,14 @@
   .header ul {
     margin-right: 0px;
   }
-  .header ul li {
+  .header .link {
     font-size: 16px;
     margin-top: 10px;
   }
-  .header ul li:first-child {
+  .header .link:first-child {
     margin-right: 10px;
   }
-  .header ul li:last-child {
+  .header .link:last-child {
     margin-left: 10px;
   }
 }
@@ -90,7 +92,7 @@
     font-size: 20px;
     margin-bottom: 5px;
   }
-  .header ul li {
+  .header .link {
     font-size: 14px;
     margin-top: 10px;
   }
