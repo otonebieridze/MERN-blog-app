@@ -2,19 +2,11 @@
 
 ### Table of Contents
 
-- [Prerequisites](#Prerequisites)
 - [Technologies Used](#Technologies-Used)
 - [Getting Started](#Getting-Started)
 - [Setup Environment Variables](#Setup-Environment-Variables)
 - [See The Project In Action](#See-The-Project-In-Action)
 - [Author](#Author)
-
-#
-
-### Prerequisites
-
-- <img src="readme/npm.png" width="25" style="top: 8px" /> _npm
-- <img src="readme/vite.png" width="25" style="top: 8px" /> _vite
 
 #
 
