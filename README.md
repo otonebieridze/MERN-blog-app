@@ -59,8 +59,6 @@ cd ../backend && npm install
    ```plaintext
    MONGO_URI=your_mongodb_connection_uri
    PORT=your_port
-
-
 #
 
 ### See The Project In Action
