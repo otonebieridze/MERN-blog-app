@@ -5,6 +5,8 @@
 - [Prerequisites](#Prerequisites)
 - [Technologies Used](#Technologies-Used)
 - [Getting Started](#Getting-Started)
+- [Setup Environment Variables](#Setup-Environment-Variables)
+- [See The Project In Action](#See-The-Project-In-Action)
 - [Author](#Author)
 
 #
@@ -47,7 +49,9 @@ cd frontend && npm install
 cd ../backend && npm install
 ```
 
-4. Setup Environment Variables:
+#
+
+### Setup Environment Variables
 
 1. Create a `.env` file in the `backend` directory.
 2. Open the `.env` file and define the following environment variables:
@@ -55,8 +59,11 @@ cd ../backend && npm install
    ```plaintext
    MONGO_URI=your_mongodb_connection_uri
    PORT=your_port
-   
-5. To see the project in action
+
+
+#
+
+### See The Project In Action
 
 ```
 cd frontend && npm run dev
