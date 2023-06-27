@@ -40,17 +40,27 @@ git clone https://github.com/otonebieridze/MERN-blog-app.git
 cd MERN-blog-app
 ```
 
-3. Install the dependencies for both the server and client:
+3. Install the dependencies for both the backend and frontend:
 
 ```
-cd server && npm install
-cd ../client && npm install
+cd frontend && npm install
+cd ../backend && npm install
 ```
 
-4. To see the project in action
+4. Setup Environment Variables:
+
+1. Create a `.env` file in the `backend` directory.
+2. Open the `.env` file and define the following environment variables:
+
+   ```plaintext
+   MONGO_URI=your_mongodb_connection_uri
+   PORT=your_port
+   
+5. To see the project in action
 
 ```
-npm run dev
+cd frontend && npm run dev
+cd ../backend && npm run dev
 ```
 
 #
